@@ -211,3 +211,4 @@ aside .box.promo p{color:var(--muted)}
 .cats a:first-child{padding-left:0}
 .cats a:hover{opacity:1}
 .cats a[aria-current="page"]{opacity:1;border-bottom-color:#9fb8d8;font-weight:600}
+.logo{display:inline-flex;align-items:center} .gw-mark{display:block;border-radius:7px;flex:none;margin-right:8px}

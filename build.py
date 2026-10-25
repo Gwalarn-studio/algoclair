@@ -85,7 +85,7 @@ def head(lang, title, desc, path, alt_path, extra=""):
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">
 <meta property="og:type" content="website"><meta property="og:url" content="{canon}">
 {links}
-<link rel="icon" href="{ICON}">
+<link rel="icon" type="image/svg+xml" href="{rel(path)}assets/gwalarn-icone.svg"><link rel="icon" type="image/png" href="{rel(path)}assets/gwalarn-icone.png"><link rel="apple-touch-icon" href="{rel(path)}assets/gwalarn-icone.png">
 {FONTS}
 <link rel="stylesheet" href="{rel(path)}assets/style.css">{extra}
 </head><body>"""
@@ -104,7 +104,7 @@ def nav(lang, path, alt_path, active=None):
     other_home = home_path(t["other_lang"])
     other = f"{r}{alt_path}" if alt_path is not None else f"{r}{other_home}"
     return f"""<header class="band"><div class="wrap nav">
-<a class="logo" href="{r}{home_path(lang)}">Algo<span>Clair</span></a>
+<a class="logo" href="{r}{home_path(lang)}"><img class="gw-mark" src="{r}assets/gwalarn-icone.svg" alt="" width="28" height="28">Algo<span>Clair</span></a>
 <nav class="menu" aria-label="Menu">
 <a class="lang" href="{other}" hreflang="{t['other_lang']}" lang="{t['other_lang']}">{t['other']}</a>
 <a class="cta" href="{r}{lang}/{GUIDE[lang]}.html">{t['guide']} · {PRICE}</a></nav></div>
