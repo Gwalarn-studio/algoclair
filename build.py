@@ -121,6 +121,13 @@ def promo(lang):
     return f"""<div class="box promo"><h3>{t['promo_h']}</h3><p>{t['promo_p']}</p>
 <a class="btn btn-mark" href="{GUIDE[lang]}.html">{t['promo_b']}</a></div>"""
 
+def fr_typo(s):
+    """French typography: no-break spaces inside « » and before : ; ? ! so they never start a line. Text only, tags untouched."""
+    def fix(t):
+        t = t.replace("« ", "«\u00a0").replace(" »", "\u00a0»")
+        return re.sub(r" ([:;?!])", "\u00a0\\1", t)
+    return re.sub(r"(^|>)([^<]*)", lambda m: m.group(1) + fix(m.group(2)), s)
+
 def load(lang):
     out = []
     for f in sorted((ROOT / "content" / lang).glob("*.html")):
@@ -132,6 +139,8 @@ def load(lang):
     return out
 
 def write(path, page):
+    if path == "index.html" or path.startswith("fr/"):
+        page = fr_typo(page)
     (ROOT / "docs" / path).parent.mkdir(parents=True, exist_ok=True)
     (ROOT / "docs" / path).write_text(page, encoding="utf-8")
 

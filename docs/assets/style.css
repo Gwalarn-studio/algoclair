@@ -212,3 +212,13 @@ aside .box.promo p{color:var(--muted)}
 .cats a:hover{opacity:1}
 .cats a[aria-current="page"]{opacity:1;border-bottom-color:#9fb8d8;font-weight:600}
 .logo{display:inline-flex;align-items:center} .gw-mark{display:block;border-radius:7px;flex:none;margin-right:8px}
+
+/* readability pass: legible small text, buttons that keep their contrast in dark mode */
+.crumbs,.byline,.article-head .byline{font-size:.875rem}
+.eyebrow,.card .tag{font-size:.78rem}
+.menu .lang{font-size:.85rem}
+.buybox .fine,.price small,.small,.disclosure{font-size:.875rem}
+.copy{font-size:.82rem}
+.prose .btn-mark{color:var(--mark-ink)}
+.btn[aria-disabled="true"]{opacity:1;background:var(--tint);color:var(--ink);border:1px dashed var(--muted);cursor:default}
+.prose a.btn[aria-disabled="true"]{color:var(--ink)}
