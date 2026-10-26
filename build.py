@@ -33,6 +33,19 @@ T = {
         "disc": "AlgoClair is an independent site, not affiliated with Instagram, Meta, TikTok or YouTube. We cite our sources and never invent numbers.",
         "rubrics": {"algo": "Algorithms", "create": "Content creation", "myths": "Myths and facts", "guide": "Guide", "legal": "Legal"}},
 }
+# Sister sites of the Gwalarn family, linked in every footer: (name, short description per lang, url per lang).
+SISTERS = [("Plume & Go", {"fr": "CV et textes rédigés par IA", "en": "AI-written CVs and texts"},
+            {"fr": "https://gwalarn-studio.github.io/Plume-and-go/?lang=fr", "en": "https://gwalarn-studio.github.io/Plume-and-go/?lang=en"}),
+           ("NextDesk", {"fr": "carrière et télétravail", "en": "careers and remote work"},
+            {"fr": "https://gwalarn-studio.github.io/nextdesk/fr/", "en": "https://gwalarn-studio.github.io/nextdesk/"}),
+           ("AlgoClair", {"fr": "algorithmes des réseaux sociaux", "en": "social media algorithms"},
+            {"fr": "https://gwalarn-studio.github.io/algoclair/", "en": "https://gwalarn-studio.github.io/algoclair/en/"})]
+
+def sisters(lang, me):
+    label = "Les sites Gwalarn :" if lang == "fr" else "Gwalarn sites:"
+    links = "".join(f'<span>{html.escape(n)}</span>' if n == me else f'<a href="{u[lang]}">{html.escape(n)} · {d[lang]}</a>' for n, d, u in SISTERS)
+    return f'<div class="wrap sister"><span>{label}</span>{links}</div>'
+
 LEGAL = {"fr": ("mentions-legales", "confidentialite", "cgv", "retractation"),
          "en": ("legal-notice", "privacy", "terms", "withdrawal")}
 GUIDE = {"fr": "guide-algorithme", "en": "algorithm-guide"}
@@ -114,7 +127,7 @@ def footer(lang, path):
     t = T[lang]; r = rel(path); l = LEGAL[lang]
     return f"""<footer><div class="wrap row"><span>AlgoClair · Gwalarn · {t['tag']}</span>
 <nav><a href="{r}{lang}/{l[0]}.html">{t['legal']}</a><a href="{r}{lang}/{l[1]}.html">{t['privacy']}</a><a href="{r}{lang}/{l[2]}.html">{t['terms']}</a><a href="{r}{lang}/{l[3]}.html">{t['withdraw']}</a></nav>
-</div></footer><script src="{r}assets/site.js" defer></script></body></html>"""
+</div>{sisters(lang, "AlgoClair")}</footer><script src="{r}assets/site.js" defer></script></body></html>"""
 
 def promo(lang):
     t = T[lang]
