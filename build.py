@@ -59,8 +59,6 @@ CAT_DEK = {"fr": {"algo": "Comment Instagram, TikTok et YouTube décident quoi m
                   "create": "Hooks, formats and methods to make videos people watch to the end.",
                   "myths": "Shadowbans, hashtags, the magic hour: what's true and what isn't."}}
 
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">')
 ICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23111827'/%3E"
         "%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23ffffff' stroke-width='3'/%3E%3C/svg%3E")
 
@@ -99,7 +97,7 @@ def head(lang, title, desc, path, alt_path, extra=""):
 <meta property="og:type" content="website"><meta property="og:url" content="{canon}">
 {links}
 <link rel="icon" type="image/svg+xml" href="{rel(path)}assets/gwalarn-icone.svg"><link rel="icon" type="image/png" href="{rel(path)}assets/gwalarn-icone.png"><link rel="apple-touch-icon" href="{rel(path)}assets/gwalarn-icone.png">
-{FONTS}
+<link rel="stylesheet" href="{rel(path)}assets/fonts/fonts.css">
 <link rel="stylesheet" href="{rel(path)}assets/style.css">{extra}
 </head><body>"""
 
@@ -126,7 +124,7 @@ def nav(lang, path, alt_path, active=None):
 def footer(lang, path):
     t = T[lang]; r = rel(path); l = LEGAL[lang]
     return f"""<footer><div class="wrap row"><span>AlgoClair · Gwalarn · {t['tag']}</span>
-<nav><a href="{r}{lang}/{l[0]}.html">{t['legal']}</a><a href="{r}{lang}/{l[1]}.html">{t['privacy']}</a><a href="{r}{lang}/{l[2]}.html">{t['terms']}</a><a href="{r}{lang}/{l[3]}.html">{t['withdraw']}</a></nav>
+<nav><a href="{r}{lang}/{l[0]}.html">{t['legal']}</a><a href="{r}{lang}/{l[1]}.html">{t['privacy']}</a><a href="{r}{lang}/{l[2]}.html">{t['terms']}</a><a href="https://commandes.gwalarn.workers.dev/retractation?site=algoclair&amp;lang={lang}">{t['withdraw']}</a></nav>
 </div>{sisters(lang, "AlgoClair")}</footer><script src="{r}assets/site.js" defer></script></body></html>"""
 
 def promo(lang):
